@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SVG Image Viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CHANGE ME">
+    <meta name="keywords" content="CHANGE ME">
+    <meta name="author" content="Kristan Samaroo">
+    <!-- Load jquery, bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <!-- Custom CSS End -->
+</head>
+<body id = "pageBody">
+    
+    <div class = "modal" id = "loginDIV"></div>
+
+    <form id = "logout">
+        <button type = "submit" id = "logoutButton" style = "float:right; font-size: 12px;background-color:#374785;color:white;">Log Out</button>
+    </form>
+
+    <h3>SVG Image Viewer/ Editor</h3>
+
+    <!--
+    If the A3 stub is running and simple.gpx exists in the uploads/ directory on the server, then clicking on the link below will download it from the server.<br>
+    -->
+
+    <!-- File Log Panel -->
+    <h4 id = "FileLogHeader"></h4>
+    <table id = "FileLogPanel"></table>
+
+    <!-- Drop Down Menu for SVG View -->
+    <h4 id = "selectFileHeader"></h4>
+
+    <!-- Upload file  -->
+    <form id="uploadSVG" method = "post" action = "/upload" enctype = "multipart/form-data">
+        <h6>Choose SVG to Upload:</h6>
+        <br>
+        <input id = "uploadFileID" type="file" name="uploadFileInput" accept=".svg">
+        <br>
+        <button type = "submit">Submit SVG</button> 
+    </form>
+
+    <!-- Select File to View in SVG View Panel -->
+    <h6>Please select a File to View:</h6>
+    <form id="selectFileView" >
+        <select id="svgFileView"></select>
+    </form>
+
+    <!-- SVG View Panel -->
+    <!-- <h4 id = "SVGViewHeader"></h4> -->
+    <table id = "SVGViewPanel"></table> 
+
+    <!-- SVG View Panel -->
+    <h6 id = "updateSVGPropertiesHeader">Update/ Edit Image Properties:</h6>
+    <table id = "updateSVGProperties">
+        <tbody id = "updatePropertiesBody">
+            <!-- Select Child and Attribute -->
+            <tr>
+                <td>
+                    <form id="chooseChildForm" >
+                        <select id="chooseChild"></select>
+                    </form>
+                </td>
+                <td>
+                    <form id="chooseMainAttrForm" >
+                        <select id="chooseMainAttr"></select>
+                    </form>
+                </td>
+                <td>
+                    <form id="chooseAttrForm" >
+                        <select id="chooseAttr"></select>
+                    </form>
+                </td>
+            </tr>
+            <!-- Update and submit attribute or view -->
+            <tr>
+                <td>
+                    Show/ Edit Attribute:
+                </td>
+                <td id = "editMainAttribute">
+
+                </td>
+                <td id = "editAttribute">
+
+                </td>
+            </tr>
+            <!-- Add new attribute  -->
+            <tr>
+                <td>
+                    Add New Attribute:<br> (Enter Attribute Name)
+                </td>
+                <td>
+                </td>
+                <td id = "addAttribute">
+
+                </td>
+            </tr>
+            <!-- Edit Title -->
+            <tr>
+                <td>
+                    Edit Title:
+                </td>
+                <td>
+                </td>
+                <td id = "editTitle">
+
+                </td>
+            </tr>
+            <!-- Edit Description -->
+            <tr>
+                <td>
+                    Edit Description:
+                </td>
+                <td>
+                </td>
+                <td id = "editDescription">
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Edit SVG File, includes Adding Shape and Scaling a Shape -->
+    <h4 id = "EditingSVGFile">Editing SVG File:</h4>
+    <h6>Please Select an SVG to Edit:</h6>
+    <form id="chooseSVGEditForm" >
+        <select id="chooseSVGEdit"></select>
+    </form>
+    <!-- Add Shape -->
+    <h6 id = "addShapeHeader">Add Shape: </h6>
+    <form id="selectShapeForm">
+        <select id="selectShape"></select>
+    </form>
+    <form id = "addShapeForm">
+
+    </form>
+    
+    <!-- Scale Shape -->
+    <h6 id = "scaleShapeHeader">Scale Shape: </h6>
+    <p id = "scaleShapeH8">Factor Range:<br>(0.1x - 5x)</p>
+    <form id="scaleShapeForm" >
+        <select id="scaleShape"></select>
+    </form>
+    <form id = "scaleShapeForm">
+
+    </form>
+
+    <!-- Create a new SVG File with a unique filename  -->
+    <h4 id = "CreateSVGFile">Create a new SVG File: </h4>
+    <form ref='createSVGForm' id='createSVGForm'>
+        <input type="text" class="form-control" placeholder = "Enter new Filename" id="newSVGName">
+        <input type="text" class="form-control" placeholder = "Enter new Title" id="newTitle">
+        <input type="text" class="form-control" placeholder = "Enter the Description" id="newDescription">
+        <button type = "submit" class="btn btn-secondary">Create SVG</button> 
+    </form>
+
+    <!-- Interact With Database Section -->
+    <h4 id = "InteractDB">Interact with Database (A4)</h4>
+
+    <!-- Stores all the files located in the file log panel in the database if they are not already there -->
+    <h6>Store all Files in Database</h6>
+    <form id = "storeDBFiles">
+        <button type = "submit">Store All Files</button>
+    </form>
+
+    <!-- Deletes all the rows from all tables -->
+    <h6>Clear All Data</h6>
+    <form id = "clearAllData">
+        <button type = "submit">Clear Data</button>
+    </form>
+
+    <!-- Displays alert with status line -->
+    <h6>Display Database Status</h6>
+    <form id = "displayStatusForm">
+        <button type = "submit">Display Status</button>
+    </form>
+
+    <!-- Section that allows user to query the database in multiple ways -->
+    <h6>Execute Queries</h6>
+    <div class = "databaseQuery">
+        <ul>
+            <li>
+                <a id = "queryOption" href = "allFiles">All Files</a>
+            </li>
+            <li>
+                <a id = "queryOption" href = "allFilesDate">Files in Time Period</a>
+            </li>
+            <li>
+                <a id = "queryOption" href = "modifiedFiles">Modified Files</a>
+            </li>
+            <li>
+                <a id = "queryOption" href = "specificShape">Specific Shape Counts</a>
+            </li>
+            <li>
+                <a id = "queryOption" href = "mostDownloaded">Frequent Downloaded Files</a>
+            </li>
+            <li>
+                <a id = "queryOption" href = "specificChange">Specfic Changes</a>
+            </li>      
+        </ul>
+        <ul class = "secondaryMenuRow" id = "organizeData">
+
+        </ul>
+    </div>
+
+    <!-- This is where the user will input the date they want to search in, type of shape, shape count, etc. -->
+    <div id = "queryForInformation">
+        <h6 id = "queryTitle"></h6>
+        <div id = "tempQuery">
+            <!-- <select style = "float:right" id="querySort"></select>
+            <br>
+            <form id = "dateRangeForm"></form> -->
+        </div>
+        <!-- <form id = "getNForm"></form> -->
+        <!-- <br> -->
+        <!-- <form id = "shapeCountForm"></form> -->
+        <!-- <br> -->
+        <br>
+        <table id = "queryTable"></table>
+    </div>
+
+
+
+
+    <!---->
+    <!-- Leave me at the bottom of body -->
+    <script src="/index.js"></script>
+</body>
+</html>
+

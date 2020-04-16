@@ -1,0 +1,193 @@
+html {
+    width: 80%;
+    height: 100%;
+    min-height: 100%;
+    margin: 0 auto;
+    font-size: 16px;
+    /* BackGroundColor */
+    background-color: #3e4444;
+}
+html, body {
+    overflow: auto;
+}
+body {
+    margin: 0 auto;
+    height: 100%;
+    min-height: 100%;
+    line-height: 1.75;
+    /* BodyColor */
+    background-color: white;
+    background-color: #eaece5;
+    padding: 20px;
+    box-sizing: border-box;
+}
+h3 {
+    /* Header Color */
+    /* background: #454140; */
+    background-color: #A8D0E6;
+    padding: 40px;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+}
+h4 {
+    /* Header Color */
+    /* background: #a79e84; */
+    background-color: #24305E;
+    text-align: center;
+    /* color: #7a3b2e; */
+    color:white;
+    padding: 20px
+}
+h6 {
+    /* Header Color */
+    /* background: #686256; */
+    background-color: #374785;
+    color: white;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+}
+p {
+    text-align: center;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 75px; /* Location of the box */
+    left: 0;
+    top: 0;
+    margin: 0 auto;
+    width: 80%; /* Full width */
+    height: 100%; /* Full height */
+    /* overflow: auto; Enabl//e scroll if needed */
+    background-color: whitesmoke;
+    /* background-color: rgb(0,0,0); Fallback color */
+    /* background-color: rgba(0,0,0,0.1); */
+}
+
+
+form{
+    margin:0 auto;
+    text-align: center;
+    padding: 10px;
+}
+
+
+.databaseQuery{
+    padding:10px;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #22778c;
+}
+li {
+    display:inline-block;
+    margin: 0 auto;
+    border-right: 1px solid #bbb;
+    font-size: 15px;
+}
+li:last-child {
+    border-right: none;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover:not(.active) {
+    background-color: #314f57;
+    color: white;
+    text-decoration: none;
+}
+.active {
+    background-color: #4CAF50;
+}
+
+.secondaryMenuRow{
+    float: right;
+}
+tr:first-child {
+    background: #c7e4eb;
+}
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+tr:hover {
+    background-color: #e8fbff;
+}
+table, th, td {
+    border: 1px solid black;
+    font-size: 12px;
+    text-align: center;
+    padding: 20px;
+    margin: 0 auto;
+}
+table#SVGViewPanel{
+    width: 90%;
+}
+table#FileLogPanel{
+    width: 90%;
+}
+input {
+    padding: 10px;
+}
+img {
+    height: auto;
+    width: 200px;
+}
+.fileLogPanel {
+    padding: 20px;
+}
+.svgViewPanel {
+    padding: 20px;
+}
+div.svgViewPanel { 
+    margin:4px, 4px; 
+    padding:4px; 
+    width: 110vh; 
+    height: 800px; 
+    overflow-x: hidden; 
+    overflow-x: auto; 
+    text-align:justify; 
+} 
+
+a:link:hover {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    text-decoration: underline;
+    cursor: pointer;
+    cursor: hand;
+}
+input[type=submit], button {
+    cursor: pointer;
+    cursor: hand;
+    margin: 0 auto;
+}
+@media(max-width: 900px) {
+    html {
+        font-size: 14px !important;
+        width: 80% !important;
+    }
+}
+@media(max-width: 480px) {
+    html {
+        font-size: 12px !important;
+        width: 90% !important;
+    }
+}
+@media(max-width: 320px) {
+    html {
+        font-size: 12px !important;
+        width: 100% !important;
+    }
+}
